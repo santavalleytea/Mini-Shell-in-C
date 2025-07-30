@@ -5,6 +5,7 @@
 #include "../include/parser.h"
 #include "../include/executor.h"
 #include "../include/history.h"
+#include "../include/utils.h"
 
 int main() {
     init_history();
@@ -32,6 +33,11 @@ int main() {
             continue;
         }
 
+        trim_whitespace(line);
+        if (is_whitespace_only(line)) {
+            continue;
+        }
+        
         char **argv = parse_input(line);
 
         execute(argv);
