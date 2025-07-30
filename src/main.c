@@ -4,8 +4,10 @@
 #include <sys/types.h>
 #include "../include/parser.h"
 #include "../include/executor.h"
+#include "../include/history.h"
 
 int main() {
+    init_history();
     char *line = NULL; // buffer that getline will allocate
     size_t bufsize = 0; // size of buffer
 
@@ -13,6 +15,8 @@ int main() {
         printf("minishell>");
         fflush(stdout); // prompt shows before input
         ssize_t len = getline(&line, &bufsize, stdin);
+
+        add_to_history(line);
 
         if (len == -1) {
             printf("\nExiting shell...\n");
@@ -37,5 +41,6 @@ int main() {
     }
 
     free(line);
+    free_history();
     return 0;
 }

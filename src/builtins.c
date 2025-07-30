@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "../include/builtins.h"
+#include "../include/history.h"
 
 int handle_builtin(char **argv) {
     if (argv[0] == NULL) {
@@ -27,6 +28,9 @@ int handle_builtin(char **argv) {
 
         return 1;
 
+    } else if (strcmp(argv[0], "history") == 0) {
+        print_history();
+        return 1;
     }
 
     return 0;
