@@ -12,6 +12,8 @@ char **parse_input(char *input) {
 
     while (token != NULL && i < MAX_TOKEN - 1) {
         argv[i] = strdup(token);
+
+
         i++;
         token = strtok(NULL, " ");
     }

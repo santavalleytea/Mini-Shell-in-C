@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include "../include/parser.h"
+#include "../include/executor.h"
 
 int main() {
     char *line = NULL; // buffer that getline will allocate
@@ -29,10 +30,7 @@ int main() {
 
         char **argv = parse_input(line);
 
-        // Testing: print tokens
-        for (int i = 0; argv[i] != NULL; ++i) {
-            printf("Token[%d]: %s\n", i, argv[i]);
-        }
+        execute(argv);
 
         free_argv(argv);
 
